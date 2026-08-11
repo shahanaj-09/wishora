@@ -1,0 +1,928 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Occasions | Wishora</title>
+
+    <meta name="description"
+          content="Find the perfect Wishora gift for every beautiful occasion.">
+
+    <!-- Fonts -->
+    <link rel="preconnect"
+          href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap"
+          rel="stylesheet">
+
+    <!-- Icons -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <!-- Main CSS -->
+    <link rel="stylesheet"
+          href="../css/style.css">
+
+    <link rel="stylesheet"
+          href="../css/components.css">
+
+    <link rel="stylesheet"
+          href="../css/responsive.css">
+
+    <style>
+
+        /* ==========================================
+           OCCASIONS PAGE
+        ========================================== */
+
+        .occasion-page {
+            min-height: 100vh;
+            background: #f8f3ed;
+        }
+
+        /* PAGE HERO */
+
+        .occasion-hero {
+            min-height: 430px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            text-align: center;
+
+            position: relative;
+            overflow: hidden;
+
+            background:
+                radial-gradient(
+                    circle at 20% 30%,
+                    rgba(185,149,92,.15),
+                    transparent 25%
+                ),
+
+                radial-gradient(
+                    circle at 80% 70%,
+                    rgba(100,47,73,.08),
+                    transparent 28%
+                ),
+
+                linear-gradient(
+                    135deg,
+                    #fbf7f2,
+                    #eee1d8
+                );
+        }
+
+        .occasion-hero::before {
+            content: "";
+
+            position: absolute;
+
+            width: 500px;
+            height: 500px;
+
+            border: 1px solid rgba(185,149,92,.18);
+
+            border-radius: 50%;
+
+            top: -250px;
+            left: -150px;
+        }
+
+        .occasion-hero::after {
+            content: "";
+
+            position: absolute;
+
+            width: 430px;
+            height: 430px;
+
+            border: 1px solid rgba(185,149,92,.18);
+
+            border-radius: 50%;
+
+            right: -200px;
+            bottom: -230px;
+        }
+
+        .occasion-hero-content {
+            width: min(850px, 90%);
+
+            position: relative;
+
+            z-index: 3;
+        }
+
+        .occasion-label {
+            color: var(--gold);
+
+            font-size: 9px;
+
+            font-weight: 700;
+
+            letter-spacing: .3em;
+        }
+
+        .occasion-hero h1 {
+            margin-top: 18px;
+
+            font-family: var(--serif);
+
+            font-size: clamp(60px, 8vw, 105px);
+
+            line-height: .8;
+
+            font-weight: 500;
+
+            color: var(--wine-dark);
+
+            letter-spacing: -.05em;
+        }
+
+        .occasion-hero h1 em {
+            color: var(--wine);
+
+            font-style: italic;
+        }
+
+        .occasion-hero p {
+            max-width: 550px;
+
+            margin: 28px auto 0;
+
+            color: var(--muted);
+
+            font-size: 13px;
+
+            line-height: 1.9;
+        }
+
+        .breadcrumb {
+            margin-top: 25px;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            gap: 10px;
+
+            color: #9a8c91;
+
+            font-size: 9px;
+        }
+
+        .breadcrumb a {
+            color: var(--wine);
+        }
+
+        /* OCCASION LIST */
+
+        .occasion-page-content {
+            width: min(1250px, 90%);
+
+            margin: auto;
+
+            padding: 90px 0 120px;
+        }
+
+        .occasion-intro {
+            display: flex;
+
+            align-items: end;
+
+            justify-content: space-between;
+
+            margin-bottom: 40px;
+        }
+
+        .occasion-intro h2 {
+            font-family: var(--serif);
+
+            font-size: 48px;
+
+            font-weight: 500;
+
+            color: var(--wine-dark);
+        }
+
+        .occasion-intro h2 em {
+            color: var(--wine);
+
+            font-style: italic;
+        }
+
+        .occasion-intro p {
+            max-width: 400px;
+
+            color: var(--muted);
+
+            font-size: 11px;
+
+            line-height: 1.7;
+
+            text-align: right;
+        }
+
+        .occasion-list {
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 18px;
+        }
+
+        .occasion-box {
+            height: 360px;
+
+            position: relative;
+
+            overflow: hidden;
+
+            cursor: pointer;
+
+            background: #ddd;
+
+            transition:
+                transform .45s ease,
+                box-shadow .45s ease;
+        }
+
+        .occasion-box:hover {
+            transform: translateY(-7px);
+
+            box-shadow:
+                0 30px 60px
+                rgba(50,24,39,.17);
+        }
+
+        .occasion-box img {
+            width: 100%;
+            height: 100%;
+
+            object-fit: cover;
+
+            transition:
+                transform .8s ease;
+        }
+
+        .occasion-box:hover img {
+            transform: scale(1.08);
+        }
+
+        .occasion-box-overlay {
+            position: absolute;
+
+            inset: 0;
+
+            background:
+                linear-gradient(
+                    to top,
+                    rgba(38,18,29,.85),
+                    rgba(38,18,29,.05) 70%
+                );
+        }
+
+        .occasion-box-content {
+            position: absolute;
+
+            left: 25px;
+            right: 25px;
+            bottom: 25px;
+
+            color: white;
+
+            z-index: 2;
+        }
+
+        .occasion-number {
+            color: #d8bb84;
+
+            font-size: 8px;
+
+            letter-spacing: .2em;
+        }
+
+        .occasion-box h3 {
+            margin-top: 7px;
+
+            font-family: var(--serif);
+
+            font-size: 34px;
+
+            font-weight: 500;
+        }
+
+        .occasion-box p {
+            margin-top: 5px;
+
+            color: rgba(255,255,255,.7);
+
+            font-size: 9px;
+        }
+
+        .occasion-box-arrow {
+            position: absolute;
+
+            right: 0;
+            bottom: 0;
+
+            width: 38px;
+            height: 38px;
+
+            border: 1px solid
+                rgba(255,255,255,.5);
+
+            border-radius: 50%;
+
+            display: grid;
+            place-items: center;
+
+            transition: .35s ease;
+        }
+
+        .occasion-box:hover
+        .occasion-box-arrow {
+            background: white;
+
+            color: var(--wine-dark);
+
+            transform: rotate(-45deg);
+        }
+
+        /* FEATURE NOTE */
+
+        .occasion-note {
+            margin-top: 70px;
+
+            padding: 45px;
+
+            border:
+
+                1px solid
+                rgba(185,149,92,.3);
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #fffaf5,
+                    #f4e9df
+                );
+
+            text-align: center;
+        }
+
+        .occasion-note i {
+            color: var(--gold);
+
+            font-size: 22px;
+        }
+
+        .occasion-note h3 {
+            margin-top: 15px;
+
+            font-family: var(--serif);
+
+            font-size: 30px;
+
+            color: var(--wine-dark);
+        }
+
+        .occasion-note p {
+            max-width: 570px;
+
+            margin: 10px auto 0;
+
+            color: var(--muted);
+
+            font-size: 11px;
+
+            line-height: 1.8;
+        }
+
+        /* MOBILE */
+
+        @media(max-width: 800px) {
+
+            .occasion-list {
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+            .occasion-intro {
+                display: block;
+
+                text-align: center;
+            }
+
+            .occasion-intro p {
+                margin: 15px auto 0;
+
+                text-align: center;
+            }
+
+        }
+
+        @media(max-width: 520px) {
+
+            .occasion-hero {
+                min-height: 380px;
+            }
+
+            .occasion-list {
+                grid-template-columns: 1fr;
+            }
+
+            .occasion-box {
+                height: 390px;
+            }
+
+            .occasion-intro h2 {
+                font-size: 40px;
+            }
+
+            .occasion-note {
+                padding: 30px 20px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- ================================================
+     PAGE
+================================================= -->
+
+<div class="occasion-page">
+
+
+    <!-- ============================================
+         TOP BAR
+    ============================================= -->
+
+    <div class="top-bar">
+
+        <div class="top-bar-inner">
+
+            <span>
+                <i class="fa-solid fa-sparkles"></i>
+                Thoughtful gifts, beautifully chosen
+            </span>
+
+            <span class="top-divider"></span>
+
+            <span>
+                Free delivery on selected orders
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <!-- ============================================
+         HEADER
+    ============================================= -->
+
+    <header class="header">
+
+        <div class="navbar">
+
+
+            <!-- LOGO -->
+
+            <a href="../index.html"
+               class="logo">
+
+                <div class="logo-symbol">
+                    W
+                </div>
+
+                <div class="logo-text">
+
+                    <strong>
+                        Wishora
+                    </strong>
+
+                    <small>
+                        GIFTS MADE MEANINGFUL
+                    </small>
+
+                </div>
+
+            </a>
+
+
+            <!-- NAVIGATION -->
+
+            <nav class="navigation">
+
+                <a href="../index.html">
+                    Home
+                </a>
+
+                <a href="occasions.html"
+                   class="active">
+                    Occasions
+                </a>
+
+                <a href="products.html">
+                    Gifts
+                </a>
+
+                <a href="gift-finder.html">
+                    Gift Finder
+                </a>
+
+            </nav>
+
+
+            <!-- ACTIONS -->
+
+            <div class="nav-actions">
+
+                <button class="nav-action">
+
+                    <i class="fa-solid fa-magnifying-glass"></i>
+
+                </button>
+
+                <button class="nav-action">
+
+                    <i class="fa-regular fa-heart"></i>
+
+                    <span class="counter">
+                        0
+                    </span>
+
+                </button>
+
+                <button class="nav-action">
+
+                    <i class="fa-solid fa-bag-shopping"></i>
+
+                    <span class="counter">
+                        0
+                    </span>
+
+                </button>
+
+                <a href="../auth/login.html"
+                   class="login-button">
+
+                    Login
+
+                </a>
+
+                <button class="mobile-menu">
+
+                    <i class="fa-solid fa-bars"></i>
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- ============================================
+         HERO
+    ============================================= -->
+
+    <section class="occasion-hero">
+
+        <div class="occasion-hero-content">
+
+            <span class="occasion-label">
+                FIND THE RIGHT MOMENT
+            </span>
+
+            <h1>
+                Gifts for
+                <em>every occasion.</em>
+            </h1>
+
+            <p>
+                From little celebrations to unforgettable milestones,
+                discover thoughtful gifts chosen to make every moment
+                feel beautifully personal.
+            </p>
+
+            <div class="breadcrumb">
+
+                <a href="../index.html">
+                    Home
+                </a>
+
+                <i class="fa-solid fa-chevron-right"></i>
+
+                <span>
+                    Occasions
+                </span>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ============================================
+         OCCASIONS
+    ============================================= -->
+
+    <main class="occasion-page-content">
+
+
+        <div class="occasion-intro">
+
+            <div>
+
+                <span class="section-label">
+                    CHOOSE YOUR MOMENT
+                </span>
+
+                <h2>
+                    Something special
+                    <em>for everyone.</em>
+                </h2>
+
+            </div>
+
+            <p>
+                Tell us what you're celebrating and we'll
+                help you discover gifts that feel just right.
+            </p>
+
+        </div>
+
+
+        <div class="occasion-list">
+
+
+            <!-- BIRTHDAY -->
+
+            <div class="occasion-box"
+                 data-occasion="birthday">
+
+                <img
+                    src="https://images.unsplash.com/photo-1530103862676-de8c9debad1d?auto=format&fit=crop&w=900&q=85"
+                    alt="Birthday gifts">
+
+                <div class="occasion-box-overlay"></div>
+
+                <div class="occasion-box-content">
+
+                    <span class="occasion-number">
+                        01 — CELEBRATE
+                    </span>
+
+                    <h3>
+                        Birthday
+                    </h3>
+
+                    <p>
+                        Make their day unforgettable.
+                    </p>
+
+                    <div class="occasion-box-arrow">
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- LOVE -->
+
+            <div class="occasion-box"
+                 data-occasion="love">
+
+                <img
+                    src="https://images.unsplash.com/photo-1518199266791-5375a83190b7?auto=format&fit=crop&w=900&q=85"
+                    alt="Love gifts">
+
+                <div class="occasion-box-overlay"></div>
+
+                <div class="occasion-box-content">
+
+                    <span class="occasion-number">
+                        02 — ROMANCE
+                    </span>
+
+                    <h3>
+                        Love
+                    </h3>
+
+                    <p>
+                        Say what words sometimes cannot.
+                    </p>
+
+                    <div class="occasion-box-arrow">
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- ANNIVERSARY -->
+
+            <div class="occasion-box"
+                 data-occasion="anniversary">
+
+                <img
+                    src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=900&q=85"
+                    alt="Anniversary gifts">
+
+                <div class="occasion-box-overlay"></div>
+
+                <div class="occasion-box-content">
+
+                    <span class="occasion-number">
+                        03 — TOGETHER
+                    </span>
+
+                    <h3>
+                        Anniversary
+                    </h3>
+
+                    <p>
+                        Celebrate every chapter together.
+                    </p>
+
+                    <div class="occasion-box-arrow">
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- WEDDING -->
+
+            <div class="occasion-box"
+                 data-occasion="wedding">
+
+                <img
+                    src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=900&q=85"
+                    alt="Wedding gifts">
+
+                <div class="occasion-box-overlay"></div>
+
+                <div class="occasion-box-content">
+
+                    <span class="occasion-number">
+                        04 — NEW BEGINNINGS
+                    </span>
+
+                    <h3>
+                        Wedding
+                    </h3>
+
+                    <p>
+                        A beautiful beginning deserves a beautiful gift.
+                    </p>
+
+                    <div class="occasion-box-arrow">
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- FRIENDSHIP -->
+
+            <div class="occasion-box"
+                 data-occasion="friendship">
+
+                <img
+                    src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=900&q=85"
+                    alt="Friendship gifts">
+
+                <div class="occasion-box-overlay"></div>
+
+                <div class="occasion-box-content">
+
+                    <span class="occasion-number">
+                        05 — FOREVER FRIENDS
+                    </span>
+
+                    <h3>
+                        Friendship
+                    </h3>
+
+                    <p>
+                        For the people who make life brighter.
+                    </p>
+
+                    <div class="occasion-box-arrow">
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- THANK YOU -->
+
+            <div class="occasion-box"
+                 data-occasion="thank-you">
+
+                <img
+                    src="https://images.unsplash.com/photo-1549465220-1a8b9238cd48?auto=format&fit=crop&w=900&q=85"
+                    alt="Thank you gifts">
+
+                <div class="occasion-box-overlay"></div>
+
+                <div class="occasion-box-content">
+
+                    <span class="occasion-number">
+                        06 — GRATITUDE
+                    </span>
+
+                    <h3>
+                        Thank You
+                    </h3>
+
+                    <p>
+                        A little gratitude goes a long way.
+                    </p>
+
+                    <div class="occasion-box-arrow">
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- =========================================
+             NOTE
+        ========================================== -->
+
+        <div class="occasion-note">
+
+            <i class="fa-solid fa-wand-magic-sparkles"></i>
+
+            <h3>
+                Not sure what to choose?
+            </h3>
+
+            <p>
+                Don't worry. Wishora can help you find a gift
+                based on the occasion, relationship, personality
+                and your budget.
+            </p>
+
+            <a href="gift-finder.html"
+               class="gold-button">
+
+                Find My Perfect Gift
+
+                <i class="fa-solid fa-arrow-right"></i>
+
+            </a>
+
+        </div>
+
+
+    </main>
+
+</div>
+
+
+<script src="../js/main.js"></script>
+
+</body>
+
+</html>s
