@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cart - Wishora</title>
+
+<link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+
+<section class="section-container" style="padding:80px 0;">
+
+<div class="section-heading">
+<span class="section-label">YOUR CART</span>
+<h2>Shopping <em>Cart</em></h2>
+</div>
+
+<div class="product-card" style="max-width:500px;margin:auto;text-align:center;">
+
+<h3 id="productName"></h3>
+
+<p id="productPrice"></p>
+
+<a href="checkout.html" class="primary-button">
+Proceed To Checkout
+</a>
+
+</div>
+
+</section>
+
+<script>
+
+document.getElementById("productName").innerText =
+localStorage.getItem("productName");
+
+document.getElementById("productPrice").innerText =
+"Price: ₹" + localStorage.getItem("price");
+
+</script>
+
+</body>
+</html>

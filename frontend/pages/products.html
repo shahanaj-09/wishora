@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Products - Wishora</title>
+
+<link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+
+<body>
+
+<section class="section-container" style="padding:80px 0;">
+
+<div class="section-heading">
+<span class="section-label">WISHORA PRODUCTS</span>
+<h2>Gift <em>Collection</em></h2>
+<p>Select your favorite gift.</p>
+</div>
+
+<div style="display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:30px;">
+
+<div class="product-card">
+<img src="../images/gift1.jpg" alt="Luxury Gift Box">
+
+<h3>Luxury Gift Box</h3>
+<p>₹1499</p>
+
+<button class="primary-button" onclick="addToCart()">
+Add To Cart
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+<script>
+function addToCart(productName, price) {
+    localStorage.setItem("productName", productName);
+    localStorage.setItem("price", price);
+
+    window.location.href = "cart.html";
+}
+
+</script>
+
+</body>
+</html>
